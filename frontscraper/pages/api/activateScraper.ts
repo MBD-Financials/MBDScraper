@@ -17,15 +17,9 @@ export default async function handler(
   res: NextApiResponse<Data | Error>
 ) {
   try {
-    const search = req.body.search;
-
     console.log("Submitting...");
-    await adminDb.collection("searches").doc('1232sdas12312').set({
-      search,
-      status: "pending",
-      // updatedAt: admin.firestore.Timestamp.now(),
-    });
     
+    const search = req.body.search;
 
     console.log("SEARCH IS >> ", search);
     const response = await fetch(
