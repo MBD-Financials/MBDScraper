@@ -1,10 +1,10 @@
 import * as admin from "firebase-admin";
 import { getApps } from "firebase-admin/app";
-// const serviceAccount = require("./serviceAccountKey.json");
+const serviceAccount = require("./Service_Key.json");
 
-const serviceAccount = JSON.parse(
-  process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
-);
+// const serviceAccount = JSON.parse(
+//   process.env.FIREBASE_SERVICE_ACCOUNT_KEY as string
+// );
 
 if (!getApps().length) {
   admin.initializeApp({
@@ -15,3 +15,4 @@ if (!getApps().length) {
 const adminDb = admin.firestore();
 
 export { adminDb };
+

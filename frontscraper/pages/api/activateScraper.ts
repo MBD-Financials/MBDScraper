@@ -17,14 +17,19 @@ export default async function handler(
   res: NextApiResponse<Data | Error>
 ) {
   try {
-    console.log("Submitting...");
-
     const search = req.body.search;
 
-    console.log("SEARCH IS >> ", search);
+    console.log("Submitting...");
+    await adminDb.collection("searches").doc('1232sdas12312').set({
+      search,
+      status: "pending",
+      // updatedAt: admin.firestore.Timestamp.now(),
+    });
+    
 
+    console.log("SEARCH IS >> ", search);
     const response = await fetch(
-      "https://api.brightdata.com/dca/trigger?collector=c_leh2wyperkyo5n10s&queue_next=1",
+      "https://api.brightdata.com/dca/trigger?collector=c_lfurr6i1czcptq5fb&queue_next=1",
       {
         method: "POST",
         headers: {
@@ -47,7 +52,7 @@ export default async function handler(
       search,
       start_eta,
       status: "pending",
-      updatedAt: admin.firestore.Timestamp.now(),
+      // updatedAt: admin.firestore.Timestamp.now(),
     });
 
     return res.status(200).json({ collection_id, start_eta });
